@@ -1,0 +1,10 @@
+.env
+node_modules
+
+example.js
+src/*
+tests/*
+__tests__/*
+tsconfig.json
+./lib
+index.ts
