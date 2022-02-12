@@ -15,6 +15,12 @@ Reactor offers a standardised Steam API event sourcer implementation and interfa
 This abstraction simplifies worrying about the code to get a 'Steam bot' running, decoupling it away from the logic of other applications within a Steam-related automated system using Steam accounts.
 ## 🔌 Getting Started
 
+You can install the `npm` package using the following command:
+
+```bash
+$ npm install @automatedtf/reactor
+```
+
 Most applications that will use `@automatedtf/reactor` will follow the below structure to subscribe to different events and some sort of callback function.
 
 ```typescript
