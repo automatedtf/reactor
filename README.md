@@ -10,7 +10,7 @@
 
 ## 👋 Introduction
 
-Reactor offers a standardised Steam API event sourcer implementation and interface for events and changes on a Steam user account. Updates are polled on a regular basis via Dr. McKay's [`node-steam-user`](https://github.com/DoctorMcKay/node-steam-user#steamuser) and [`node-steam-tradeoffermanager`](https://github.com/DoctorMcKay/node-steam-tradeoffer-manager/wiki/TradeOfferManager) and are channeled upstream to a service webhook endpoint as events for applications to process and act upon.
+Reactor offers a standardised Steam API event sourcer implementation and interface for events and changes on a Steam user account. Updates are polled on a regular basis via Dr. McKay's [`node-steam-user`](https://github.com/DoctorMcKay/node-steam-user#steamuser) and [`node-steam-tradeoffermanager`](https://github.com/DoctorMcKay/node-steam-tradeoffer-manager/wiki/TradeOfferManager) and are emitted as events for applications to process and act upon via callback.
 
 This abstraction simplifies worrying about the code to get a 'Steam bot' running, decoupling it away from the logic of other applications within a Steam-related automated system using Steam accounts.
 ## 🔌 Getting Started
