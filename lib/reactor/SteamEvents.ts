@@ -1,4 +1,5 @@
 import { TradeOffer } from "@automatedtf/slate";
+import { AcceptedTradeOffer } from "./util";
 
 export enum SteamEvents {
     OnError = "OnError",
@@ -51,11 +52,11 @@ interface OnTradeSentDetails {
 
 
 interface OnSentTradeCompletedDetails {
-    offer: TradeOffer;
+    offer: AcceptedTradeOffer;
 };
 
 interface OnIncomingTradeCompletedDetails {
-    offer: TradeOffer;
+    offer: AcceptedTradeOffer;
 };
 
 interface OnTradeFailedDetails {

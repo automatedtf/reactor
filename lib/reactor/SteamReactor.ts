@@ -5,6 +5,7 @@ import { TypedEmitter } from "tiny-typed-emitter";
 import SteamTotp from 'steam-totp';
 import { Logger, LogMessage } from '../logger/Logger';
 import EventEmitter from 'events';
+import { populateExchangeDetails } from './util';
 
 export type SteamReactorInputs = {
     steamid: string;
@@ -135,7 +136,7 @@ export default class SteamReactor extends TypedEmitter<SteamEventDetails> {
             this.emit(SteamEvents.OnNewTrade, { offer });
         });
 
-        tradeManager.on("sentOfferChanged", (offer, oldState) => {
+        tradeManager.on("sentOfferChanged", async (offer, oldState) => {
             switch (offer.state) {
                 case Active:
                     Logger.output(LogMessage.SentOfferTo(offer.partner, offer.id));
@@ -143,7 +144,7 @@ export default class SteamReactor extends TypedEmitter<SteamEventDetails> {
                     break;
                 case Accepted:
                     Logger.output(LogMessage.TradeCompleted(offer.id));
-                    this.emit(SteamEvents.OnSentTradeCompleted, { offer });
+                    this.emit(SteamEvents.OnSentTradeCompleted, { offer: await populateExchangeDetails(offer) });
                     break;
                 case InvalidItems:
                 case Declined:
@@ -159,7 +160,7 @@ export default class SteamReactor extends TypedEmitter<SteamEventDetails> {
             }
         });
 
-        tradeManager.on("receivedOfferChanged", (offer, oldState) => {
+        tradeManager.on("receivedOfferChanged", async (offer, oldState) => {
             switch (offer.state) {
                 case Active:
                     Logger.output(LogMessage.ReceivedOfferFrom(offer.partner, offer.id));
@@ -167,7 +168,7 @@ export default class SteamReactor extends TypedEmitter<SteamEventDetails> {
                     break;
                 case Accepted:
                     Logger.output(LogMessage.TradeCompleted(offer.id));
-                    this.emit(SteamEvents.OnIncomingTradeCompleted, { offer });
+                    this.emit(SteamEvents.OnIncomingTradeCompleted, { offer: await populateExchangeDetails(offer) });
                     break;
                 case Declined:
                 case Expired:

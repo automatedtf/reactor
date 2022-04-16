@@ -33,6 +33,7 @@ const bot = new SteamReactor({
     accountName: process.env.ACCOUNT_NAME,
     password: process.env.ACCOUNT_PASSWORD,
     sharedSecret: process.env.SHARED_SECRET,
+    identitySecret: process.env.IDENTITY_SECRET,
     logonID: process.env.LOGON_ID ? parseInt(process.env.LOGON_ID) : undefined
 });
 
@@ -87,11 +88,11 @@ Emitted when a trade offer from the bot has been sent out
 
 ### `OnSentTradeCompleted`
 Emitted when a trade offer sent out from the bot has been accepted and confirmed.
-- `offer: TradeOffer`
+- `offer: AcceptedTradeOffer`
 
 ### `OnIncomingTradeCompleted`
 Emitted when an incoming trade offer to the bot has been accepted and confirmed.
-- `offer: TradeOffer`
+- `offer: AcceptedTradeOffer`
 
 ### `OnTradeFailed`
 Emitted when any trade offer (incoming or sent) has not been accepted and can't be reacted upon further.
