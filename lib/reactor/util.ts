@@ -17,7 +17,7 @@ type UpdatedEconItem = TradeItem & {
     rollback_new_contextid: string;
 }
 
-export type AcceptedTradeOffer = TradeOffer & {
+export type AcceptedTradeOffer = Omit<TradeOffer, "itemsToReceive" | "itemsToGive"> & {
     itemsToReceive: UpdatedEconItem[];
     itemsToGive: UpdatedEconItem[];
 }
